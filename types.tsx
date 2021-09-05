@@ -23,6 +23,12 @@ export type TabParamList = {
   Calls: undefined;
   Status: undefined;
 };
+
+export type ScreenParamList = {
+  user: User;
+  messages: Message[];
+};
+
 export type User = {
   id: string;
   name: string;
@@ -32,8 +38,8 @@ export type Message = {
   id: string;
   content: string;
   createdAt: string;
-  user : {id:string,name:string}
-
+  user: { id: string; name: string };
+  isRead: boolean;
 };
 
 export type ChatRoom = {
@@ -46,6 +52,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<TabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  ChatScreen: ScreenParamList | undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

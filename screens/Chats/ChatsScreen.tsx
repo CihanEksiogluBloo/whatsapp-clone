@@ -1,17 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import ChatListItem from "../components/ChatListItem/ChatListItem";
-import { RootTabScreenProps } from "../types";
-import chatRooms from "../data/Chats";
 
-const ChatsScreen = ({ navigation }: RootTabScreenProps<"Status">) => {
+import { RootTabScreenProps } from "../../types";
+import chatRooms from "../../data/Chats";
+import ChatListItem from "../../components/ChatComps/ChatListItem";
+
+const ChatsScreen: React.FC<RootTabScreenProps<"Status">> = () => {
   return (
     <View style={styles.container}>
       <FlatList
         data={chatRooms}
         keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => {
-          return <ChatListItem chatRoom={item} index={index} />;
+        renderItem={({ item }) => {
+          return <ChatListItem chatRoom={item} />;
         }}
       />
     </View>

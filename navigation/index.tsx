@@ -1,30 +1,28 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { FontAwesome } from "@expo/vector-icons";
-import { Feather, Entypo } from "@expo/vector-icons";
+import { Feather, Entypo, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, View } from "react-native";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import CameraScreen from "../screens/CameraScreen";
-import ChatsScreen from "../screens/ChatsScreen";
+import ChatsScreen from "../screens/Chats/ChatsScreen";
 import CallScreen from "../screens/CallsScreen";
 import StatusScreen from "../screens/StatusScreen";
-import { RootStackParamList, TabParamList, RootTabScreenProps } from "../types";
+import { RootStackParamList, TabParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import ChatScreen from "../screens/Chats/ChatScreen";
+import { Avatar } from "react-native-elements";
 
 export default function Navigation({
   colorScheme,
@@ -41,11 +39,7 @@ export default function Navigation({
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
@@ -53,55 +47,120 @@ function RootNavigator() {
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.light.headerBackground,
+          elevation: 0,
+          shadowOpacity: 0,
         },
         headerTintColor: Colors.light.headerTint,
         headerTitleStyle: {
           fontWeight: "bold",
         },
-        headerShadowVisible: false,
+        ...TransitionPresets.SlideFromRightIOS,
       }}
     >
-      <Stack.Screen
-        name="Root"
-        component={TopTabNavigator}
-        options={{
-          headerTitle: "Whatsapp",
-          headerRight: () => {
-            return (
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: 60,
-                  marginRight: 10,
-                }}
-              >
-                <Feather
-                  name="search"
-                  size={24}
-                  color="white"
-                  onPress={() => {}}
-                />
-                <Entypo
-                  name="dots-three-vertical"
-                  size={24}
-                  color="white"
-                  onPress={() => {}}
-                />
-              </View>
-            );
-          },
-        }}
-      />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{
-          title: "Oops!",
-        }}
-      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="Root"
+          component={TopTabNavigator}
+          options={{
+            headerTitle: "Whatsapp",
+            headerRight: () => {
+              const colorScheme = useColorScheme();
+              return (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    width: 60,
+                    marginRight: 10,
+                  }}
+                >
+                  <Feather
+                    name="search"
+                    size={24}
+                    color={Colors[colorScheme].headerTint}
+                    onPress={() => {}}
+                  />
+                  <Entypo
+                    name="dots-three-vertical"
+                    size={24}
+                    color={Colors[colorScheme].headerTint}
+                    onPress={() => {}}
+                  />
+                </View>
+              );
+            },
+          }}
+        />
+        <Stack.Screen
+          name="NotFound"
+          component={NotFoundScreen}
+          options={{
+            title: "Oops!",
+          }}
+        />
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={({ route, navigation }) => ({
+            title: route.params?.user.name,
+            headerTitleStyle: { fontSize: 16 },
+            headerTitleAlign: "left",
+            headerLeft: () => {
+              const colorScheme = useColorScheme();
+              return (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginLeft: 10,
+                  }}
+                >
+                  <Ionicons
+                    name="arrow-back"
+                    size={24}
+                    color={Colors[colorScheme].headerTint}
+                    onPress={() => {
+                      navigation.goBack();
+                    }}
+                  />
+                  <Avatar
+                    size="small"
+                    rounded
+                    source={{ uri: route.params?.user.imageUri }}
+                    containerStyle={{ marginLeft: 10 }}
+                  />
+                </View>
+              );
+            },
+            headerRight: () => {
+              const colorScheme = useColorScheme();
+              return (
+                <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
+                  <FontAwesome
+                    name="video-camera"
+                    size={24}
+                    color={Colors[colorScheme].headerTint}
+                    style={{ marginHorizontal: 10 }}
+                  />
+                  <FontAwesome
+                    name="phone"
+                    size={24}
+                    color={Colors[colorScheme].headerTint}
+                    style={{ marginHorizontal: 10 }}
+                  />
+
+                  <Entypo
+                    name="dots-three-vertical"
+                    size={24}
+                    color={Colors[colorScheme].headerTint}
+                    onPress={() => {}}
+                  />
+                </View>
+              );
+            },
+          })}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

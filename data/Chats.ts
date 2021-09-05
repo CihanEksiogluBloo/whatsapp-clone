@@ -17,57 +17,63 @@ const dummydata = [
       {
         id: "m1",
         content: "How are you, Cihan!",
-        createdAt: "2020-10-10T12:48:00.000Z",
+        createdAt: "2021-10-10T12:48:00.000Z",
         user: {
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
       {
         id: "m2",
         content: "I am good, good",
-        createdAt: "2020-10-03T14:49:00.000Z",
+        createdAt: "2021-10-03T14:49:00.000Z",
         user: {
           id: "u2",
           name: "Cihan",
         },
+        isRead:true,
       },
       {
         id: "m3",
         content: "What about you?",
-        createdAt: "2020-10-03T14:49:40.000Z",
+        createdAt: "2021-10-03T14:49:40.000Z",
         user: {
           id: "u2",
           name: "Cihan",
         },
+        isRead:true,
       },
       {
         id: "m4",
         content: "Good as well, preparing for the stream now.",
-        createdAt: "2020-10-03T14:50:00.000Z",
+        createdAt: "2021-10-03T14:50:00.000Z",
         user: {
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
       {
         id: "m5",
         content: "How is your uni going?",
-        createdAt: "2020-10-03T14:51:00.000Z",
+        createdAt: "2021-10-03T14:51:00.000Z",
         user: {
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
       {
         id: "m6",
         content:
           "It is a bit tough, as I have 2 specializations. How about yours? Do you enjoy it?",
-        createdAt: "2020-10-03T14:49:00.000Z",
+        createdAt: "2021-10-03T14:49:00.000Z",
         user: {
           id: "u2",
           name: "Cihan",
         },
+        isRead:true,
       },
       {
         id: "m7",
@@ -78,6 +84,7 @@ const dummydata = [
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
     ],
   },
@@ -86,7 +93,7 @@ const dummydata = [
     users: [
       {
         id: "g1",
-        name: "PHP Genclik Kollari",
+        name: "PHP Genclik Kollari Kappa",
         imageUri:
           "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
       },
@@ -105,57 +112,63 @@ const dummydata = [
       {
         id: "m1",
         content: "How are you, Cihan!",
-        createdAt: "2020-10-10T12:48:00.000Z",
+        createdAt: "2021-10-10T12:48:00.000Z",
         user: {
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
       {
         id: "m2",
         content: "I am good, good",
-        createdAt: "2020-10-03T14:49:00.000Z",
+        createdAt: "2021-10-03T14:49:00.000Z",
         user: {
           id: "u2",
           name: "Cihan",
         },
+        isRead:true,
       },
       {
         id: "m3",
         content: "What about you?",
-        createdAt: "2020-10-03T14:49:40.000Z",
+        createdAt: "2021-10-03T14:49:40.000Z",
         user: {
           id: "u2",
           name: "Cihan",
         },
+        isRead:true,
       },
       {
         id: "m4",
         content: "Good as well, preparing for the stream now.",
-        createdAt: "2020-10-03T14:50:00.000Z",
+        createdAt: "2021-10-03T14:50:00.000Z",
         user: {
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
       {
         id: "m5",
         content: "How is your uni going?",
-        createdAt: "2020-10-03T14:51:00.000Z",
+        createdAt: "2021-10-03T14:51:00.000Z",
         user: {
           id: "u1",
           name: "Aytug",
         },
+        isRead:true,
       },
       {
         id: "m6",
         content:
           "It is a bit tough, as I have 2 specializations. How about yours? Do you enjoy it?",
-        createdAt: "2020-10-03T14:49:00.000Z",
+        createdAt: "2021-10-03T14:49:00.000Z",
         user: {
           id: "u2",
           name: "Cihan",
         },
+        isRead:true,
       },
       {
         id: "m7",
@@ -166,6 +179,7 @@ const dummydata = [
           id: "u1",
           name: "Aytug",
         },
+        isRead:false,
       },
     ],
   },
@@ -187,57 +201,63 @@ const dummydata = [
     {
       id: "m1",
       content: "How are you, Cihan!",
-      createdAt: "2020-10-10T12:48:00.000Z",
+      createdAt: "2021-10-10T12:48:00.000Z",
       user: {
         id: "u3",
         name: "Aykut",
       },
+      isRead:true,
     },
     {
       id: "m2",
       content: "I am good, good",
-      createdAt: "2020-10-03T14:49:00.000Z",
+      createdAt: "2021-10-03T14:49:00.000Z",
       user: {
         id: "u2",
         name: "Cihan",
       },
+      isRead:true,
     },
     {
       id: "m3",
       content: "What about you?",
-      createdAt: "2020-10-03T14:49:40.000Z",
+      createdAt: "2021-10-03T14:49:40.000Z",
       user: {
         id: "u2",
         name: "Cihan",
       },
+      isRead:true,
     },
     {
       id: "m4",
       content: "Good as well, preparing for the stream now.",
-      createdAt: "2020-10-03T14:50:00.000Z",
+      createdAt: "2021-10-03T14:50:00.000Z",
       user: {
         id: "u3",
         name: "Aykut",
       },
+      isRead:true,
     },
     {
       id: "m5",
       content: "How is your uni going?",
-      createdAt: "2020-10-03T14:51:00.000Z",
+      createdAt: "2021-10-03T14:51:00.000Z",
       user: {
         id: "u3",
         name: "Aykut",
       },
+      isRead:true,
     },
     {
       id: "m6",
       content:
         "It is a bit tough, as I have 2 specializations. How about yours? Do you enjoy it?",
-      createdAt: "2020-10-03T14:49:00.000Z",
+      createdAt: "2021-10-03T14:49:00.000Z",
       user: {
         id: "u2",
         name: "Cihan",
       },
+      isRead:false,
     },
     {
       id: "m7",
@@ -248,6 +268,7 @@ const dummydata = [
         id: "u3",
         name: "Aykut",
       },
+      isRead:false,
     },
   ],
 },

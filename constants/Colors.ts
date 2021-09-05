@@ -10,6 +10,7 @@ export default {
     tabIconSelected: tintColorLight,
     headerBackground: tintColorLight,
     headerTint: "#fff",
+    messageBox: "#e5e5e5",
   },
   dark: {
     text: "#fff",
@@ -19,5 +20,7 @@ export default {
     tabIconSelected: tintColorDark,
     headerBackground: tintColorDark,
     headerTint: "#fff",
+    messageBox: "#e5e5e5",
   },
+  myMessageBox: "#DCF8C5",
 };
