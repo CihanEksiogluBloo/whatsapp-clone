@@ -1,22 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-elements";
-import { ChatRoom } from "../../types";
 import Colors from "../../constants/Colors";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import IsReadIcon from "../icon/IsReadIcon";
+import { ChatRoom } from "../../types";
 
-export type ChatListItemProps = {
+export interface ChatListItemProp {
   chatRoom: ChatRoom;
-};
+}
 
-const ChatListItem: React.FC<ChatListItemProps> = ({ chatRoom }) => {
+const ChatListItem: React.FC<ChatListItemProp> = ({ chatRoom }) => {
   //variables
 
   const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
   let chatTitle: string | null = null;
-  
+
   const navigation = useNavigation();
 
   //if else
@@ -56,7 +56,9 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatRoom }) => {
             <Text style={styles.date}>
               {moment(lastMessage.createdAt).fromNow()}
             </Text>
-            {!lastMessage.isRead && <Text style={styles.messageCounter}>1</Text>}
+            {!lastMessage.isRead && (
+              <Text style={styles.messageCounter}>1</Text>
+            )}
           </View>
         </View>
       </View>

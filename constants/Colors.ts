@@ -11,6 +11,7 @@ export default {
     headerBackground: tintColorLight,
     headerTint: "#fff",
     messageBox: "#e5e5e5",
+    messageBoxIcons: "gray",
   },
   dark: {
     text: "#fff",
@@ -21,6 +22,7 @@ export default {
     headerBackground: tintColorDark,
     headerTint: "#fff",
     messageBox: "#e5e5e5",
+    messageBoxIcons: "gray",
   },
   myMessageBox: "#DCF8C5",
 };

@@ -1,19 +1,14 @@
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-
-import { RootTabScreenProps } from '../types'
-
-const CameraScreen = ({ navigation }: RootTabScreenProps<"Camera">) => {
+const CameraScreen: React.FC = ({}) => {
   return (
     <View>
       <Text>Camera Screen</Text>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
-export default CameraScreen
-
-
+export default CameraScreen;

@@ -1,11 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
-import { RootTabScreenProps } from "../../types";
+import { RootStackParamList } from "../../types";
 import chatRooms from "../../data/Chats";
 import ChatListItem from "../../components/ChatComps/ChatListItem";
+import FloatingMessageButton from "../../components/Button/FloatingMessageButton";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-const ChatsScreen: React.FC<RootTabScreenProps<"Status">> = () => {
+export interface ChatsScreenProps {
+  navigation: StackNavigationProp<RootStackParamList, "ChatScreen">;
+}
+
+const ChatsScreen: React.FC<ChatsScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -15,6 +21,17 @@ const ChatsScreen: React.FC<RootTabScreenProps<"Status">> = () => {
           return <ChatListItem chatRoom={item} />;
         }}
       />
+      <View style={styles.floatingIcon}>
+        <FloatingMessageButton
+          onPress={() => {
+            navigation.navigate("Contacts", {
+              id: "u2",
+              name: "Cihan",
+              imageUri: "https://avatars.githubusercontent.com/u/77451782?v=4",
+            });
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -26,5 +43,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  floatingIcon: {
+    marginBottom: 20,
+    alignSelf: "flex-end",
+    marginRight: 20,
   },
 });

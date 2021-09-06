@@ -1,19 +1,53 @@
 import React from "react";
-import { StyleSheet, View, TextInput } from "react-native";
-import { FontAwesome, FontAwesome5, Ionicons } from "@expo/vector-icons";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  GestureResponderEvent,
+} from "react-native";
+import {
+  FontAwesome,
+  FontAwesome5,
+  Ionicons,
+  Entypo,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
+import useColorScheme from "../../hooks/useColorScheme";
 
 type InputBox = {
   text: string;
   setText: (value: string) => void;
+  onMicrophoneIconPress: (event: GestureResponderEvent) => void;
+  onSmileIconPress: (event: GestureResponderEvent) => void;
+  onAttachmentIconPress: (event: GestureResponderEvent) => void;
+  sendMessage: () => void;
+  onCameraIconPress: () => { image: null | {} };
 };
 
-const InputTextComp: React.FC<InputBox> = ({ text, setText }) => {
+const InputTextComp: React.FC<InputBox> = ({
+  text,
+  sendMessage,
+  setText,
+  onMicrophoneIconPress,
+  onSmileIconPress,
+  onAttachmentIconPress,
+  onCameraIconPress,
+}) => {
+  const useSchema = useColorScheme();
+
   let button: JSX.Element = (
-    <FontAwesome name="microphone" size={20} color="white" />
+    <FontAwesome
+      name="microphone"
+      size={20}
+      color="white"
+      onPress={onMicrophoneIconPress}
+    />
   );
   if (text.length > 0) {
-    button = <Ionicons name="send" size={20} color="white" />;
+    button = (
+      <Ionicons name="send" size={20} color="white" onPress={sendMessage} />
+    );
   }
 
   function TextChangeHandler(event: string) {
@@ -27,13 +61,14 @@ const InputTextComp: React.FC<InputBox> = ({ text, setText }) => {
           style={styles.searchIcon}
           name="smile"
           size={24}
-          color="black"
+          color={Colors[useSchema].messageBoxIcons}
+          onPress={onSmileIconPress}
         />
         <TextInput
-          placeholder={"Message"}
+          placeholder={"Type a message"}
           value={text}
           style={{
-            backgroundColor: "white",
+            backgroundColor: Colors[useSchema].background,
             borderRadius: 50,
             height: 50,
             paddingHorizontal: 10,
@@ -43,6 +78,20 @@ const InputTextComp: React.FC<InputBox> = ({ text, setText }) => {
           }}
           underlineColorAndroid={"transparent"}
           onChangeText={TextChangeHandler}
+        />
+        <Entypo
+          name="attachment"
+          size={24}
+          color={Colors[useSchema].messageBoxIcons}
+          style={styles.attachment}
+          onPress={onAttachmentIconPress}
+        />
+        <MaterialIcons
+          name="photo-camera"
+          size={24}
+          color={Colors[useSchema].messageBoxIcons}
+          style={styles.camera}
+          onPress={onCameraIconPress}
         />
       </View>
 
@@ -65,7 +114,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
 
-    height: "100%",
+    height: "80%",
     backgroundColor: Colors.light.headerBackground,
     borderRadius: 200,
     padding: 15,
@@ -81,5 +130,16 @@ const styles = StyleSheet.create({
     paddingLeft: 13,
     paddingTop: 13,
     paddingBottom: 13,
+  },
+  attachment: {
+    paddingLeft: 13,
+    paddingTop: 13,
+    paddingBottom: 13,
+  },
+  camera: {
+    paddingLeft: 13,
+    paddingTop: 13,
+    paddingBottom: 13,
+    paddingRight: 13,
   },
 });

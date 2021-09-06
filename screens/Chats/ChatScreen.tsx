@@ -1,34 +1,55 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet, View, ImageBackground, KeyboardAvoidingView,Platform } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import MessageContainer from "../../components/ChatComps/MessageContainer";
-import { User, Message } from "../../types";
+
 import InputTextComp from "../../components/ChatComps/InputTextComp";
-import BG from "../../assets/images/BG.png";
-import { useHeaderHeight } from '@react-navigation/elements';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types";
+const BG = require("../../assets/images/BG.png");
 
-export type ChatScreenProps = {
-  route: { params: { user: User; messages: Message[] } };
-};
 
-const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
+const ChatScreen: React.FC<
+  NativeStackScreenProps<RootStackParamList, "ChatScreen">
+
+> = ({ route }) => {
+
   const { messages } = route.params;
   const [inputText, setInputText] = useState<string>("");
-  const headerHeight = useHeaderHeight();
 
   return (
-    <KeyboardAvoidingView behavior= {Platform.OS === "ios" ? "padding" : undefined} style={{flex:1}} >
-    <ImageBackground resizeMode="cover" style={styles.image} source={BG}>
-      <FlatList
-        data={messages}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
-          return <MessageContainer messageItem={item} />;
-        }}
-      />
-      <View style={{ margin: 5, justifyContent: "flex-end", height: "10%" }}>
-        <InputTextComp text={inputText} setText={setInputText} />
-      </View>
-    </ImageBackground>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      style={{ flex: 1 }}
+    >
+      <ImageBackground resizeMode="cover" style={styles.image} source={BG}>
+        <FlatList
+          data={messages}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return <MessageContainer messageItem={item} />;
+          }}
+        />
+        <View style={{ margin: 5, justifyContent: "flex-end", height: "10%" }}>
+          <InputTextComp
+            text={inputText}
+            setText={setInputText}
+            sendMessage={() => {}}
+            onMicrophoneIconPress={() => {}}
+            onSmileIconPress={() => {}}
+            onAttachmentIconPress={() => {}}
+            onCameraIconPress={() => {
+              return { image: null };
+            }}
+          />
+        </View>
+      </ImageBackground>
     </KeyboardAvoidingView>
   );
 };

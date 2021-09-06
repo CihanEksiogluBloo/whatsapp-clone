@@ -14,7 +14,6 @@ import {
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import NotFoundScreen from "../screens/NotFoundScreen";
 import CameraScreen from "../screens/CameraScreen";
 import ChatsScreen from "../screens/Chats/ChatsScreen";
 import CallScreen from "../screens/CallsScreen";
@@ -23,6 +22,7 @@ import { RootStackParamList, TabParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import ChatScreen from "../screens/Chats/ChatScreen";
 import { Avatar } from "react-native-elements";
+import ContactsScreen from "../screens/ContactsScreen";
 
 export default function Navigation({
   colorScheme,
@@ -92,10 +92,10 @@ function RootNavigator() {
           }}
         />
         <Stack.Screen
-          name="NotFound"
-          component={NotFoundScreen}
+          name="Contacts"
+          component={ContactsScreen}
           options={{
-            title: "Oops!",
+            title: "Contacts!",
           }}
         />
         <Stack.Screen
