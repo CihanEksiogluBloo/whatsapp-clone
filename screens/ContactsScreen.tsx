@@ -1,13 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { ContactsScreenParams } from "../types";
+import { RootStackScreenProps } from "../types";
 
-type CSParams = {
-  route: { params: ContactsScreenParams };
-};
-
-const ContactsScreen: React.FC<CSParams> = ({ route }) => {
-  const {name} = route.params;
+const ContactsScreen: React.FC<RootStackScreenProps<"Contacts">> = ({
+  route,
+}) => {
+  const { name } = route.params;
   return (
     <View>
       <Text>{name}</Text>
@@ -15,6 +13,8 @@ const ContactsScreen: React.FC<CSParams> = ({ route }) => {
   );
 };
 
+const styles = StyleSheet.create({});
+
 export default ContactsScreen;
 
-const styles = StyleSheet.create({});
+

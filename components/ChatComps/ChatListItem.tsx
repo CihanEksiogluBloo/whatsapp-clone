@@ -5,11 +5,14 @@ import Colors from "../../constants/Colors";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import IsReadIcon from "../icon/IsReadIcon";
-import { ChatRoom } from "../../types";
+import { ChatRoom, ChatScreenParamList } from "../../types";
+
 
 export interface ChatListItemProp {
   chatRoom: ChatRoom;
 }
+
+
 
 const ChatListItem: React.FC<ChatListItemProp> = ({ chatRoom }) => {
   //variables
@@ -17,7 +20,7 @@ const ChatListItem: React.FC<ChatListItemProp> = ({ chatRoom }) => {
   const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
   let chatTitle: string | null = null;
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<ChatScreenParamList>();
 
   //if else
   if (lastMessage.user.name !== chatRoom.users[0].name) {

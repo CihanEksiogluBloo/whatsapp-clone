@@ -10,7 +10,6 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StackNavigationProp } from "@react-navigation/stack";
 
 declare global {
   namespace ReactNavigation {
@@ -18,9 +17,13 @@ declare global {
   }
 }
 
+export interface Nav {
+  chatRoom: ChatRoom;
+}
+
 export type TabParamList = {
   Camera: undefined;
-  Chats: undefined;
+  Chats: ChatScreenParamList;
   Calls: undefined;
   Status: undefined;
 };
@@ -34,14 +37,19 @@ export type RootStackParamList = {
 
 // Params of Screens
 export type ChatScreenParamList = {
+  navigate: (
+    screen: "ChatScreen",
+    params: { user: User; messages: Message[] }
+  ) => void;
+
   user: User;
   messages: Message[];
 };
 
 export type ContactsScreenParams = {
-    id: string;
-    name: string;
-    imageUri: string;
+  id: string;
+  name: string;
+  imageUri: string;
 };
 
 // Components

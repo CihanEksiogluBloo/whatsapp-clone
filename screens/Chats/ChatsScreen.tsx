@@ -1,17 +1,11 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-
-import { RootStackParamList } from "../../types";
 import chatRooms from "../../data/Chats";
 import ChatListItem from "../../components/ChatComps/ChatListItem";
 import FloatingMessageButton from "../../components/Button/FloatingMessageButton";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { RootTabScreenProps } from "../../types";
 
-export interface ChatsScreenProps {
-  navigation: StackNavigationProp<RootStackParamList, "ChatScreen">;
-}
-
-const ChatsScreen: React.FC<ChatsScreenProps> = ({ navigation }) => {
+const ChatsScreen: React.FC<RootTabScreenProps<"Chats">> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
